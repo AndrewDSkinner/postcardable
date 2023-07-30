@@ -1,0 +1,13 @@
+version: '3.8'  # Use the appropriate version of Docker Compose
+
+services:
+  db:
+    image: postgres
+    container_name: your_postgres_container
+    restart: always
+    environment:
+      POSTGRES_DB: postcardable_db
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
