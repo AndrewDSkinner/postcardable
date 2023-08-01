@@ -1,14 +1,19 @@
 package com.postcardable.postcardable.web;
 
+import com.postcardable.postcardable.web.dto.PostcardDto;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/postcard")
+@RestController()
+@RequestMapping("/postcard")
 public class Controller {
 
     @PostMapping
-    void createPostcard(@RequestParam String length, @RequestParam String width) {
-        System.out.println("length is " + length + " width is " + width);
+    public void createPostcard(@RequestBody PostcardDto postcardDto) {
+        System.out.println("length is " + postcardDto.getLength() + " width is " + postcardDto.getWidth());
+
+
     }
 }
