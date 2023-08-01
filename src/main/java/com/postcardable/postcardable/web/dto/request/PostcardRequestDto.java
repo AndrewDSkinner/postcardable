@@ -1,10 +1,10 @@
-package com.postcardable.postcardable.web.dto;
+package com.postcardable.postcardable.web.dto.request;
 
-public class PostcardDto {
+public class PostcardRequestDto {
     private String length;
     private String width;
 
-    public PostcardDto(String length, String width) {
+    public PostcardRequestDto(String length, String width) {
         this.length = length;
         this.width = width;
     }
