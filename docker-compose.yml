@@ -3,7 +3,7 @@ version: '3.8'  # Use the appropriate version of Docker Compose
 services:
   db:
     image: postgres
-    container_name: your_postgres_container
+    container_name: postcardable_db
     restart: always
     environment:
       POSTGRES_DB: postcardable_db
