@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static com.postcardable.postcardable.web.dto.request.PostcardType.CARDSIZE;
+import static com.postcardable.postcardable.web.dto.request.PostcardType.HALFSHEET;
+
 @RestController()
 @RequestMapping("/postcard")
 public class Controller {
@@ -34,7 +37,13 @@ public class Controller {
         PostcardResponseDto responseDto = null;
 
         if (!ObjectUtils.isEmpty(postcardRequestDto)) {
-            responseDto = Postcard.to(postcardService.createPostcard(postcardRequestDto));
+
+            if (postcardRequestDto.getType() == HALFSHEET) {
+                responseDto = Postcard.to(postcardService.createPostcard(HALFSHEET));
+            }
+            if (postcardRequestDto.getType() == CARDSIZE) {
+                responseDto = Postcard.to(postcardService.createPostcard(CARDSIZE));
+            }
         }
 
         return ResponseEntity.ok(responseDto);

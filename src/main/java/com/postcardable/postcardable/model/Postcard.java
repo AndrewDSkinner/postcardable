@@ -1,10 +1,13 @@
 package com.postcardable.postcardable.model;
 
+import com.postcardable.postcardable.web.dto.request.PostcardType;
 import com.postcardable.postcardable.web.dto.response.PostcardResponseDto;
 
 public abstract class Postcard {
     double length;
     double width;
+
+    PostcardType type;
 
     public Postcard() {}
 
@@ -19,6 +22,10 @@ public abstract class Postcard {
 
     public double getWidth() {
         return width;
+    }
+
+    public PostcardType getType() {
+        return type;
     }
 
     public static PostcardResponseDto to(Postcard postcard) {
