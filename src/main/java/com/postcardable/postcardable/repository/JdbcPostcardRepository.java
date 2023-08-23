@@ -10,6 +10,9 @@ import org.springframework.stereotype.Repository;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.postcardable.postcardable.web.dto.request.PostcardType.CARDSIZE;
+import static com.postcardable.postcardable.web.dto.request.PostcardType.HALFSHEET;
+
 @Repository
 public class JdbcPostcardRepository implements PostcardRepository{
 
@@ -33,13 +36,35 @@ public class JdbcPostcardRepository implements PostcardRepository{
         int rowNumber = template.update(query, params);
         System.out.println(rowNumber + " row created");
 
-        if (type.equals(PostcardType.HALFSHEET)) {
+        if (type.equals(HALFSHEET)) {
             return new HalfSheet();
         }
 
         if (type.equals(PostcardType.CARDSIZE)) {
             return new CardSize();
         }
+        return null;
+    }
+
+    @Override
+    public Postcard getPostcardById(Long id) {
+        String query = "SELECT * " +
+                "FROM postcard "+
+                "WHERE id = :id";
+        Map<String, Object> params = new HashMap<>();
+        params.put("id", id);
+
+        Map<String, Object> row = template.queryForMap(query, params);
+        PostcardType type = PostcardType.valueOf((String) row.get("type"));
+
+        if (type == HALFSHEET) {
+            return new HalfSheet();
+        }
+
+        if (type == CARDSIZE) {
+            return new CardSize();
+        }
+
         return null;
     }
 }

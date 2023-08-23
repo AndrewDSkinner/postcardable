@@ -6,4 +6,5 @@ import com.postcardable.postcardable.web.dto.request.PostcardType;
 public interface PostcardService {
 
     Postcard createPostcard(PostcardType type);
+    Postcard getPostcardById(Long id);
 }

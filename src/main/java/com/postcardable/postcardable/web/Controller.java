@@ -7,12 +7,10 @@ import com.postcardable.postcardable.web.dto.response.PostcardResponseDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import static com.postcardable.postcardable.web.dto.request.PostcardType.CARDSIZE;
 import static com.postcardable.postcardable.web.dto.request.PostcardType.HALFSHEET;
@@ -46,6 +44,14 @@ public class Controller {
             }
         }
 
-        return ResponseEntity.ok(responseDto);
+        return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PostcardResponseDto> getPostcard(@PathVariable Long id) {
+
+        PostcardResponseDto responseDto = Postcard.to(postcardService.getPostcardById(id));
+
+        return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 }

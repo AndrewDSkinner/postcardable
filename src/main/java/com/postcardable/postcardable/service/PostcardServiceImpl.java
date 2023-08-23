@@ -19,4 +19,9 @@ public class PostcardServiceImpl implements PostcardService{
     public Postcard createPostcard(PostcardType type) {
         return postcardRepository.savePostcard(type);
     }
+
+    @Override
+    public Postcard getPostcardById(Long id) {
+        return postcardRepository.getPostcardById(id);
+    }
 }
