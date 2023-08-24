@@ -19,9 +19,9 @@ import static com.postcardable.postcardable.web.dto.request.PostcardType.HALFSHE
 @RequestMapping("/postcard")
 public class Controller {
 
-    Logger logger = LoggerFactory.getLogger(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    PostcardService postcardService;
+    private final PostcardService postcardService;
 
     @Autowired
     public Controller(PostcardService postcardService) {

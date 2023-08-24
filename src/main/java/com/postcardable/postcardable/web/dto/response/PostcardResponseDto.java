@@ -6,6 +6,10 @@ public class PostcardResponseDto {
     private final String length;
     private final String width;
 
+    public PostcardResponseDto() {
+        this.length = "";
+        this.width = "";
+    }
     public PostcardResponseDto(String length, String width) {
         this.length = length;
         this.width = width;

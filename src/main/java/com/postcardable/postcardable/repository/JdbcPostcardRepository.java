@@ -16,7 +16,7 @@ import static com.postcardable.postcardable.web.dto.request.PostcardType.HALFSHE
 @Repository
 public class JdbcPostcardRepository implements PostcardRepository{
 
-    NamedParameterJdbcTemplate template;
+    private final NamedParameterJdbcTemplate template;
 
     public JdbcPostcardRepository(NamedParameterJdbcTemplate template) {
         this.template = template;
