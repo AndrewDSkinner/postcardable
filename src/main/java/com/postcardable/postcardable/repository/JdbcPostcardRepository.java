@@ -1,8 +1,6 @@
 package com.postcardable.postcardable.repository;
 
-import com.postcardable.postcardable.model.CardSize;
-import com.postcardable.postcardable.model.HalfSheet;
-import com.postcardable.postcardable.model.Postcard;
+import com.postcardable.postcardable.model.*;
 import com.postcardable.postcardable.web.dto.request.PostcardType;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -37,11 +35,11 @@ public class JdbcPostcardRepository implements PostcardRepository{
         System.out.println(rowNumber + " row created");
 
         if (type.equals(HALFSHEET)) {
-            return new HalfSheet();
+            return new HalfSheet( Finish.LINEN, .054, Corners.ROUNDED);
         }
 
         if (type.equals(PostcardType.CARDSIZE)) {
-            return new CardSize();
+            return new CardSize( Finish.BAMBOO, .042, Corners.SQUARE);
         }
         return null;
     }
@@ -58,11 +56,11 @@ public class JdbcPostcardRepository implements PostcardRepository{
         PostcardType type = PostcardType.valueOf((String) row.get("type"));
 
         if (type == HALFSHEET) {
-            return new HalfSheet();
+            return new HalfSheet( Finish.LINEN, .054, Corners.ROUNDED);
         }
 
         if (type == CARDSIZE) {
-            return new CardSize();
+            return new CardSize( Finish.BAMBOO, .042, Corners.SQUARE);
         }
 
         return null;

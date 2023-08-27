@@ -6,8 +6,8 @@ import static com.postcardable.postcardable.web.dto.request.PostcardType.CARDSIZ
 
 public class CardSize extends Postcard {
 
-    public CardSize() {
-        super(4.0, 6.0);
+    public CardSize(Finish finish, Double thickness, Corners corners) {
+        super(new PostcardSize(4.0, 6.0), finish, thickness, corners);
     }
 
     @Override
