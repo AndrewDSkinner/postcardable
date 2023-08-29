@@ -43,7 +43,9 @@ public abstract class Postcard {
 
     public static PostcardResponseDto to(Postcard postcard) {
         if(postcard != null) {
-            return new PostcardResponseDto(String.valueOf(postcard.getSize().getLength()), String.valueOf(postcard.getSize().getWidth()));
+            String length = postcard.size.getLength().toString();
+            String width = postcard.size.getWidth().toString();
+            return new PostcardResponseDto(length, width, postcard.finish.toString(), postcard.thickness, postcard.corners.toString());
         }
         return new PostcardResponseDto();
     }

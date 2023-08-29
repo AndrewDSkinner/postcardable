@@ -1,5 +1,7 @@
 package com.postcardable.postcardable.web;
 
+import com.postcardable.postcardable.model.Corners;
+import com.postcardable.postcardable.model.Finish;
 import com.postcardable.postcardable.model.HalfSheet;
 import com.postcardable.postcardable.service.PostcardService;
 import com.postcardable.postcardable.web.dto.request.HalfsheetRequestDto;
@@ -28,9 +30,9 @@ class ControllerTest {
 
     @Test
     void createHalfSheetHappyPath() {
-        HalfSheet halfSheet = new HalfSheet();
-        PostcardRequestDto postcardDto = new HalfsheetRequestDto();
-        when(postcardService.createPostcard(PostcardType.HALFSHEET)).thenReturn(halfSheet);
+        HalfSheet halfSheet = new HalfSheet(Finish.BAMBOO, 0.34, Corners.ROUNDED);
+        PostcardRequestDto postcardDto = new HalfsheetRequestDto(Finish.BAMBOO, 0.34, Corners.ROUNDED, PostcardType.HALFSHEET);
+        when(postcardService.createPostcard(PostcardType.HALFSHEET, Finish.BAMBOO, 0.34, Corners.ROUNDED)).thenReturn(halfSheet);
         PostcardResponseDto responseDto = controller.createPostcard(postcardDto).getBody();
         assertNotNull(responseDto);
     }

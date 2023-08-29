@@ -1,5 +1,7 @@
 package com.postcardable.postcardable.service;
 
+import com.postcardable.postcardable.model.Corners;
+import com.postcardable.postcardable.model.Finish;
 import com.postcardable.postcardable.model.Postcard;
 import com.postcardable.postcardable.repository.PostcardRepository;
 import com.postcardable.postcardable.web.dto.request.PostcardType;
@@ -15,8 +17,8 @@ public class PostcardServiceImpl implements PostcardService{
     }
 
     @Override
-    public Postcard createPostcard(PostcardType type) {
-        return postcardRepository.savePostcard(type);
+    public Postcard createPostcard(PostcardType type, Finish finish, Double thickness, Corners corners) {
+        return postcardRepository.savePostcard(type, finish, thickness, corners);
     }
 
     @Override

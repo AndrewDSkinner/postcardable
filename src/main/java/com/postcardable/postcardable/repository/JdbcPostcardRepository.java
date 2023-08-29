@@ -21,25 +21,26 @@ public class JdbcPostcardRepository implements PostcardRepository{
     }
 
     @Override
-    public Postcard savePostcard(PostcardType type) {
+    public Postcard savePostcard(PostcardType type, Finish finish, Double thickness, Corners corners) {
 
-        String value = String.valueOf(type);
-
-        String query = "INSERT INTO postcard (type) " +
-                        "VALUES (:type) ";
+        String query = "INSERT INTO postcard (type, finish, thickness, corners) " +
+                        "VALUES (:type, :finish, :thickness, :corners) ";
 
         Map<String, Object> params = new HashMap<>();
-        params.put("type", value);
+        params.put("type", type.toString());
+        params.put("finish", finish.toString());
+        params.put("thickness", thickness);
+        params.put("corners", corners.toString());
 
         int rowNumber = template.update(query, params);
         System.out.println(rowNumber + " row created");
 
         if (type.equals(HALFSHEET)) {
-            return new HalfSheet( Finish.LINEN, .054, Corners.ROUNDED);
+            return new HalfSheet(finish, thickness, corners);
         }
 
         if (type.equals(PostcardType.CARDSIZE)) {
-            return new CardSize( Finish.BAMBOO, .042, Corners.SQUARE);
+            return new CardSize(finish, thickness, corners);
         }
         return null;
     }

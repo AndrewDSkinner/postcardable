@@ -1,5 +1,7 @@
 package com.postcardable.postcardable.web;
 
+import com.postcardable.postcardable.model.Corners;
+import com.postcardable.postcardable.model.Finish;
 import com.postcardable.postcardable.model.Postcard;
 import com.postcardable.postcardable.service.PostcardService;
 import com.postcardable.postcardable.web.dto.request.PostcardRequestDto;
@@ -28,17 +30,21 @@ public class Controller {
 
     @PostMapping
     public ResponseEntity<PostcardResponseDto> createPostcard(@RequestBody PostcardRequestDto postcardRequestDto) {
-        logger.info("SUCCESS: length is " + postcardRequestDto.getLength() + " width is " + postcardRequestDto.getWidth());
+        logger.info("SUCCESS: received params: " + postcardRequestDto);
 
         PostcardResponseDto responseDto = null;
+
+        Finish finish = postcardRequestDto.getFinish();
+        Double thickness = postcardRequestDto.getThickness();
+        Corners corners = postcardRequestDto.getCorners();
 
         if (!ObjectUtils.isEmpty(postcardRequestDto)) {
 
             if (postcardRequestDto.getType() == HALFSHEET) {
-                responseDto = Postcard.to(postcardService.createPostcard(HALFSHEET));
+                responseDto = Postcard.to(postcardService.createPostcard(HALFSHEET, finish, thickness, corners));
             }
             if (postcardRequestDto.getType() == CARDSIZE) {
-                responseDto = Postcard.to(postcardService.createPostcard(CARDSIZE));
+                responseDto = Postcard.to(postcardService.createPostcard(CARDSIZE, finish, thickness, corners));
             }
         }
 
