@@ -3,6 +3,7 @@ package com.postcardable.postcardable.web.dto.response;
 import java.util.Objects;
 
 public class PostcardResponseDto {
+    private final Long id;
     private final String length;
     private final String width;
     private final String finish;
@@ -10,6 +11,7 @@ public class PostcardResponseDto {
     private final String corners;
 
     public PostcardResponseDto() {
+        this.id = 0L;
         this.length = "";
         this.width = "";
         this.finish = "";
@@ -17,12 +19,17 @@ public class PostcardResponseDto {
         this.corners = "";
     }
 
-    public PostcardResponseDto(String length, String width, String finish, Double thickness, String corners) {
+    public PostcardResponseDto(Long id, String length, String width, String finish, Double thickness, String corners) {
+        this.id = id;
         this.length = length;
         this.width = width;
         this.finish = finish;
         this.thickness = thickness;
         this.corners = corners;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getLength() {
@@ -48,7 +55,8 @@ public class PostcardResponseDto {
     @Override
     public String toString() {
         return "PostcardResponseDto{" +
-                "length='" + length + '\'' +
+                "id=" + id +
+                ", length='" + length + '\'' +
                 ", width='" + width + '\'' +
                 ", finish='" + finish + '\'' +
                 ", thickness=" + thickness +
@@ -61,11 +69,11 @@ public class PostcardResponseDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PostcardResponseDto that = (PostcardResponseDto) o;
-        return Objects.equals(length, that.length) && Objects.equals(width, that.width) && Objects.equals(finish, that.finish) && Objects.equals(thickness, that.thickness) && Objects.equals(corners, that.corners);
+        return Objects.equals(id, that.id) && Objects.equals(length, that.length) && Objects.equals(width, that.width) && Objects.equals(finish, that.finish) && Objects.equals(thickness, that.thickness) && Objects.equals(corners, that.corners);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(length, width, finish, thickness, corners);
+        return Objects.hash(id, length, width, finish, thickness, corners);
     }
 }

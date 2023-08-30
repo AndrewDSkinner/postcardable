@@ -8,7 +8,7 @@ class PostcardResponseDtoTest {
 
     @Test
     void happyPath() {
-        PostcardResponseDto postcardResponseDto = new PostcardResponseDto("5.5", "8.5");
+        PostcardResponseDto postcardResponseDto = new PostcardResponseDto(1L,"5.5", "8.5", "BAMBOO", 0.025, "ROUNDED");
 
         assertEquals(postcardResponseDto.getLength(), "5.5");
         assertEquals(postcardResponseDto.getWidth(), "8.5");

@@ -4,6 +4,7 @@ import com.postcardable.postcardable.web.dto.request.PostcardType;
 import com.postcardable.postcardable.web.dto.response.PostcardResponseDto;
 
 public abstract class Postcard {
+    private final Long id;
     private final PostcardSize size;
 
     private final Finish finish;
@@ -14,11 +15,16 @@ public abstract class Postcard {
 
     private PostcardType type;
 
-    public Postcard(PostcardSize size, Finish finish, Double thickness, Corners corners) {
+    public Postcard(Long id, PostcardSize size, Finish finish, Double thickness, Corners corners) {
+        this.id = id;
         this.size = size;
         this.finish = finish;
         this.thickness = thickness;
         this.corners = corners;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public PostcardSize getSize() {
@@ -45,7 +51,7 @@ public abstract class Postcard {
         if(postcard != null) {
             String length = postcard.size.getLength().toString();
             String width = postcard.size.getWidth().toString();
-            return new PostcardResponseDto(length, width, postcard.finish.toString(), postcard.thickness, postcard.corners.toString());
+            return new PostcardResponseDto(postcard.id, length, width, postcard.finish.toString(), postcard.thickness, postcard.corners.toString());
         }
         return new PostcardResponseDto();
     }
