@@ -3,6 +3,9 @@ package com.postcardable.postcardable.model;
 import com.postcardable.postcardable.web.dto.request.PostcardType;
 import com.postcardable.postcardable.web.dto.response.PostcardResponseDto;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public abstract class Postcard {
     private final Long id;
     private final PostcardSize size;
@@ -54,5 +57,11 @@ public abstract class Postcard {
             return new PostcardResponseDto(postcard.id, length, width, postcard.finish.toString(), postcard.thickness, postcard.corners.toString());
         }
         return new PostcardResponseDto();
+    }
+
+    public static List<PostcardResponseDto> buildDtos(List<Postcard> postcards) {
+        return postcards.stream()
+                .map(Postcard::to)
+                .collect(Collectors.toList());
     }
 }

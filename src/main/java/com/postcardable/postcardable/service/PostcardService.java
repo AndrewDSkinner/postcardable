@@ -5,8 +5,11 @@ import com.postcardable.postcardable.model.Finish;
 import com.postcardable.postcardable.model.Postcard;
 import com.postcardable.postcardable.web.dto.request.PostcardType;
 
+import java.util.List;
+
 public interface PostcardService {
 
     Postcard createPostcard(PostcardType type, Finish finish, Double thickness, Corners corners);
     Postcard getPostcardById(Long id);
+    List<Postcard> findPostcardsByType(PostcardType type);
 }

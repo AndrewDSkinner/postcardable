@@ -9,6 +9,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -54,7 +55,8 @@ public class JdbcPostcardRepository implements PostcardRepository{
 
     @Override
     public Postcard getPostcardById(Long id) {
-        String query = "SELECT * " +
+        String query =
+                "SELECT * " +
                 "FROM postcard "+
                 "WHERE id = :id";
         Map<String, Object> params = new HashMap<>();
@@ -62,13 +64,47 @@ public class JdbcPostcardRepository implements PostcardRepository{
 
         Map<String, Object> row = template.queryForMap(query, params);
         PostcardType type = PostcardType.valueOf((String) row.get("type"));
+        Finish finish =  Finish.valueOf((String) row.get("finish"));
+        Double thickness = (Double) row.get("thickness");
+        Corners corners = Corners.valueOf((String) row.get("corners"));
+        Long resultId = (Long) row.get("id");
 
         if (type == HALFSHEET) {
-            return new HalfSheet( 1L,Finish.LINEN, .054, Corners.ROUNDED);
+            return new HalfSheet( resultId,finish, thickness, corners);
         }
 
         if (type == CARDSIZE) {
-            return new CardSize( 2L,Finish.LINEN, .042, Corners.SQUARE);
+            return new CardSize( resultId,finish, thickness, corners);
+        }
+
+        return null;
+    }
+
+    @Override
+    public List<Postcard> findPostcardsByType(PostcardType type) {
+        String query =
+                        "SELECT * " +
+                        "FROM postcard " +
+                        "WHERE type = :type";
+        Map<String, Object> params = new HashMap<>();
+        params.put("type", type.toString());
+
+        if (type == HALFSHEET) {
+            return template.query(query, params, (rs, rowNum) -> new HalfSheet(
+                    rs.getLong("id"),
+                    Finish.valueOf(rs.getString("finish")),
+                    rs.getDouble("thickness"),
+                    Corners.valueOf(rs.getString("corners"))
+            ));
+        }
+
+        if (type == CARDSIZE) {
+            return template.query(query, params, (rs, rowNum) -> new CardSize(
+                    rs.getLong("id"),
+                    Finish.valueOf(rs.getString("finish")),
+                    rs.getDouble("thickness"),
+                    Corners.valueOf(rs.getString("corners"))
+            ));
         }
 
         return null;

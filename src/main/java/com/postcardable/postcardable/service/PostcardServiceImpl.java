@@ -7,6 +7,8 @@ import com.postcardable.postcardable.repository.PostcardRepository;
 import com.postcardable.postcardable.web.dto.request.PostcardType;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PostcardServiceImpl implements PostcardService{
 
@@ -24,5 +26,10 @@ public class PostcardServiceImpl implements PostcardService{
     @Override
     public Postcard getPostcardById(Long id) {
         return postcardRepository.getPostcardById(id);
+    }
+
+    @Override
+    public List<Postcard> findPostcardsByType(PostcardType type) {
+        return postcardRepository.findPostcardsByType(type);
     }
 }
