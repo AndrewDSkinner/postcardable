@@ -10,8 +10,8 @@ public class HalfsheetRequestDto extends PostcardRequestDto{
     public HalfsheetRequestDto() {
     }
 
-    public HalfsheetRequestDto(Finish finish, Double thickness, Corners corners, PostcardType type) {
-        super(finish, thickness, corners, type);
+    public HalfsheetRequestDto(Finish finish, Double thickness, Corners corners) {
+        super(finish, thickness, corners);
     }
 
     @Override

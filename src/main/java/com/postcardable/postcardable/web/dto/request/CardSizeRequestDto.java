@@ -11,8 +11,8 @@ public class CardSizeRequestDto extends PostcardRequestDto{
 
     }
 
-    public CardSizeRequestDto(Finish finish, Double thickness, Corners corners, PostcardType type) {
-        super(finish, thickness, corners, type);
+    public CardSizeRequestDto(Finish finish, Double thickness, Corners corners) {
+        super(finish, thickness, corners);
     }
 
     @Override

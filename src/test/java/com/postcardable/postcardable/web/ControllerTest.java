@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
@@ -30,10 +31,11 @@ class ControllerTest {
 
     @Test
     void createHalfSheetHappyPath() {
-        HalfSheet halfSheet = new HalfSheet(Finish.BAMBOO, 0.34, Corners.ROUNDED);
-        PostcardRequestDto postcardDto = new HalfsheetRequestDto(Finish.BAMBOO, 0.34, Corners.ROUNDED, PostcardType.HALFSHEET);
+        HalfSheet halfSheet = new HalfSheet(1L,Finish.BAMBOO, 0.34, Corners.ROUNDED);
+        PostcardRequestDto postcardDto = new HalfsheetRequestDto(Finish.BAMBOO, 0.34, Corners.ROUNDED);
         when(postcardService.createPostcard(PostcardType.HALFSHEET, Finish.BAMBOO, 0.34, Corners.ROUNDED)).thenReturn(halfSheet);
         PostcardResponseDto responseDto = controller.createPostcard(postcardDto).getBody();
         assertNotNull(responseDto);
+        assertEquals(responseDto.getFinish(), halfSheet.getFinish().toString());
     }
 }
