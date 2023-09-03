@@ -1,0 +1,7 @@
+CREATE TABLE postcard (
+    id BIGSERIAL PRIMARY KEY,
+    type VARCHAR(20) NOT NULL,
+    finish VARCHAR(20) NOT NULL,
+    thickness DOUBLE PRECISION NOT NULL,
+    corners VARCHAR(20) NOT NULL
+);
