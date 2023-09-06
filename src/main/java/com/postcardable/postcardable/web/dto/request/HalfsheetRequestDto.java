@@ -7,9 +7,6 @@ import static com.postcardable.postcardable.web.dto.request.PostcardType.HALFSHE
 
 public class HalfsheetRequestDto extends PostcardRequestDto{
 
-    public HalfsheetRequestDto() {
-    }
-
     public HalfsheetRequestDto(Finish finish, Double thickness, Corners corners) {
         super(finish, thickness, corners);
     }

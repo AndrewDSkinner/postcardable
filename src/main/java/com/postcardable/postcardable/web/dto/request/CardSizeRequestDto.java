@@ -7,10 +7,6 @@ import static com.postcardable.postcardable.web.dto.request.PostcardType.CARDSIZ
 
 public class CardSizeRequestDto extends PostcardRequestDto{
 
-    public CardSizeRequestDto() {
-
-    }
-
     public CardSizeRequestDto(Finish finish, Double thickness, Corners corners) {
         super(finish, thickness, corners);
     }

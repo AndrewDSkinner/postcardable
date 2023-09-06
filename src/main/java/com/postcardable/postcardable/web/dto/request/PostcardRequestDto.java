@@ -1,26 +1,15 @@
 package com.postcardable.postcardable.web.dto.request;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.postcardable.postcardable.model.Corners;
 import com.postcardable.postcardable.model.Finish;
+import jakarta.validation.ValidationException;
 
-import javax.xml.bind.ValidationException;
+import java.util.Objects;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
-@JsonSubTypes({
-        @JsonSubTypes.Type(value = HalfsheetRequestDto.class, name = "halfsheet"),
-        @JsonSubTypes.Type(value = CardSizeRequestDto.class, name = "cardsize")
-    })
 public abstract class PostcardRequestDto {
-    private Finish finish;
-    private Double thickness;
-    private  Corners corners;
-
-    private PostcardType type;
-
-    public PostcardRequestDto() {
-    }
+    private final Finish finish;
+    private final Double thickness;
+    private final Corners corners;
 
     public PostcardRequestDto(Finish finish, Double thickness, Corners corners) {
         validateProperties(finish, thickness, corners);
@@ -41,18 +30,24 @@ public abstract class PostcardRequestDto {
         return corners;
     }
 
-    public PostcardType getType() {
-        return type;
-    }
+    public abstract PostcardType getType();
 
     private void validateProperties(Finish finish, Double thickness, Corners corners) {
-        if (finish == null || thickness == null ||
-                corners == null)
-            try {
-                throw new ValidationException("Finish, thickness, corners, and type properties are required");
-            } catch (ValidationException e) {
-                throw new RuntimeException(e);
-            }
+        if (finish == null || thickness == null || corners == null) {
+            throw new ValidationException("Finish, thickness, corners, and type properties are required");
+        }
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PostcardRequestDto that = (PostcardRequestDto) o;
+        return finish == that.finish && Objects.equals(thickness, that.thickness) && corners == that.corners;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(finish, thickness, corners);
     }
 }
