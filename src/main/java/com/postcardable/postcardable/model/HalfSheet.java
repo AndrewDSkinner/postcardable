@@ -7,7 +7,7 @@ import static com.postcardable.postcardable.web.dto.request.PostcardType.HALFSHE
 public class HalfSheet extends Postcard{
 
     public HalfSheet(Long id, Finish finish, Double thickness, Corners corners) {
-        super(id, new PostcardSize(5.5, 8.5), finish, thickness, corners);
+        super(id, new PostcardDimensions(5.5, 8.5, thickness), finish, corners);
     }
 
     @Override

@@ -70,7 +70,8 @@ public class Controller {
 
     @GetMapping()
     public  ResponseEntity<List<PostcardResponseDto>> getPostcardsByType(@RequestParam String type) {
-        List<PostcardResponseDto> responseDtos = Postcard.buildDtos(postcardService.findPostcardsByType(PostcardType.valueOf(type)));
+        String value = type.toUpperCase();
+        List<PostcardResponseDto> responseDtos = Postcard.buildDtos(postcardService.findPostcardsByType(PostcardType.valueOf(value)));
 
         return new ResponseEntity<>(responseDtos, HttpStatus.OK);
     }

@@ -24,7 +24,7 @@ class PostcardTest {
         assertEquals(cardSize.getType(), PostcardType.CARDSIZE);
         assertEquals(cardSize.getId(), 1L);
         assertEquals(cardSize.getFinish(), Finish.GLOSSY);
-        assertEquals(cardSize.getThickness(), .035);
+        assertEquals(cardSize.getSize().getThickness(), .035);
         assertEquals(cardSize.getCorners(), Corners.SQUARE);
     }
 
@@ -35,7 +35,7 @@ class PostcardTest {
         assertEquals(halfSheet.getType(), PostcardType.HALFSHEET);
         assertEquals(halfSheet.getId(), 1L);
         assertEquals(halfSheet.getFinish(), Finish.PEARL);
-        assertEquals(halfSheet.getThickness(), .035);
+        assertEquals(halfSheet.getSize().getThickness(), .035);
         assertEquals(halfSheet.getCorners(), Corners.SQUARE);
     }
 
@@ -46,7 +46,7 @@ class PostcardTest {
         PostcardResponseDto responseDto = Postcard.to(halfSheet);
 
         assertEquals(halfSheet.getId(), responseDto.getId());
-        assertEquals(halfSheet.getThickness(), responseDto.getThickness());
+        assertEquals(halfSheet.getSize().getThickness(), responseDto.getThickness());
         assertEquals(halfSheet.getCorners().toString(), responseDto.getCorners());
         assertEquals(halfSheet.getFinish().toString(), responseDto.getFinish());
     }
@@ -61,8 +61,8 @@ class PostcardTest {
         assertNotNull(responseDtos);
         assertEquals(postcards.get(0).getId(), responseDtos.get(0).getId());
         assertEquals(postcards.get(0).getFinish().toString(), responseDtos.get(0).getFinish());
-        assertEquals(postcards.get(0).getThickness(), responseDtos.get(0).getThickness());
-        assertEquals(postcards.get(0).getThickness(), responseDtos.get(0).getThickness());
+        assertEquals(postcards.get(0).getSize().getThickness(), responseDtos.get(0).getThickness());
+        assertEquals(postcards.get(0).getSize().getThickness(), responseDtos.get(0).getThickness());
         assertEquals(postcards.get(0).getCorners().toString(), responseDtos.get(0).getCorners());
     }
 }

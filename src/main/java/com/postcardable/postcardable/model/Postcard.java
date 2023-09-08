@@ -8,21 +8,18 @@ import java.util.stream.Collectors;
 
 public abstract class Postcard {
     private final Long id;
-    private final PostcardSize size;
+    private final PostcardDimensions size;
 
     private final Finish finish;
-
-    private final Double thickness;
 
     private final Corners corners;
 
     private PostcardType type;
 
-    public Postcard(Long id, PostcardSize size, Finish finish, Double thickness, Corners corners) {
+    public Postcard(Long id, PostcardDimensions size, Finish finish, Corners corners) {
         this.id = id;
         this.size = size;
         this.finish = finish;
-        this.thickness = thickness;
         this.corners = corners;
     }
 
@@ -30,16 +27,12 @@ public abstract class Postcard {
         return id;
     }
 
-    public PostcardSize getSize() {
+    public PostcardDimensions getSize() {
         return size;
     }
 
     public Finish getFinish() {
         return finish;
-    }
-
-    public Double getThickness() {
-        return thickness;
     }
 
     public Corners getCorners() {
@@ -54,7 +47,7 @@ public abstract class Postcard {
         if(postcard != null) {
             String length = postcard.size.getLength().toString();
             String width = postcard.size.getWidth().toString();
-            return new PostcardResponseDto(postcard.id, length, width, postcard.finish.toString(), postcard.thickness, postcard.corners.toString());
+            return new PostcardResponseDto(postcard.id, length, width, postcard.finish.toString(), postcard.size.getThickness(), postcard.corners.toString());
         }
         return new PostcardResponseDto();
     }
