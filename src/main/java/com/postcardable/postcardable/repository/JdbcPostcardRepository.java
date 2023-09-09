@@ -2,6 +2,8 @@ package com.postcardable.postcardable.repository;
 
 import com.postcardable.postcardable.model.*;
 import com.postcardable.postcardable.web.dto.request.PostcardType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -21,12 +23,16 @@ public class JdbcPostcardRepository implements PostcardRepository{
 
     private final NamedParameterJdbcTemplate template;
 
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+
+
     public JdbcPostcardRepository(NamedParameterJdbcTemplate template) {
         this.template = template;
     }
 
     @Override
     public Postcard savePostcard(PostcardType type, Finish finish, Double thickness, Corners corners) {
+        logger.info("SUCCESS: creating postcard");
 
         String query = "INSERT INTO postcard (type, finish, thickness, corners) " +
                         "VALUES (:type, :finish, :thickness, :corners) ";
@@ -41,20 +47,22 @@ public class JdbcPostcardRepository implements PostcardRepository{
 
         template.update(query, params, keyHolder, new String[]{"id"});
 
-        Long generateId = Objects.requireNonNull(keyHolder.getKey()).longValue();
+        Long generatedId = Objects.requireNonNull(keyHolder.getKey()).longValue();
 
         if (type.equals(HALFSHEET)) {
-            return new HalfSheet(generateId,finish, thickness, corners);
+            return new HalfSheet(generatedId,finish, thickness, corners);
         }
 
         if (type.equals(PostcardType.CARDSIZE)) {
-            return new CardSize(generateId,finish, thickness, corners);
+            return new CardSize(generatedId,finish, thickness, corners);
         }
         return null;
     }
 
     @Override
     public Postcard getPostcardById(Long id) {
+        logger.info("SUCCESS: retrieving postcard with id: " + id);
+
         String query =
                 "SELECT * " +
                 "FROM postcard "+
@@ -82,6 +90,7 @@ public class JdbcPostcardRepository implements PostcardRepository{
 
     @Override
     public List<Postcard> findPostcardsByType(PostcardType type) {
+        logger.info("SUCCESS: retrieving postcards of type: " + type);
         String query =
                         "SELECT * " +
                         "FROM postcard " +
