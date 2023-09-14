@@ -24,19 +24,20 @@ public class PostcardServiceImpl implements PostcardService{
 
     @Override
     public Postcard createPostcard(PostcardType type, Finish finish, Double thickness, Corners corners) {
-        logger.info("SUCCESS: creating postcard");
+        logger.info("Creating postcard with type: {} finish: {} thickness: {} corners: {}",
+                type, finish, thickness, corners);
         return postcardRepository.savePostcard(type, finish, thickness, corners);
     }
 
     @Override
     public Postcard getPostcardById(Long id) {
-        logger.info("SUCCESS: retrieving postcard with ID: " + id);
+        logger.info("Retrieving postcard with ID: {}", id);
         return postcardRepository.getPostcardById(id);
     }
 
     @Override
     public List<Postcard> findPostcardsByType(PostcardType type) {
-        logger.info("SUCCESS: retrieving postcard with TYPE: " + type);
+        logger.info("Retrieving postcard with TYPE: {}",  type);
         return postcardRepository.findPostcardsByType(type);
     }
 }

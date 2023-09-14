@@ -32,7 +32,7 @@ public class JdbcPostcardRepository implements PostcardRepository{
 
     @Override
     public Postcard savePostcard(PostcardType type, Finish finish, Double thickness, Corners corners) {
-        logger.info("SUCCESS: creating postcard");
+        logger.info("Creating postcard with type: {} finish: {} thickness: {} corners: {}", type, finish, thickness, corners);
 
         String query = "INSERT INTO postcard (type, finish, thickness, corners) " +
                         "VALUES (:type, :finish, :thickness, :corners) ";
@@ -61,7 +61,7 @@ public class JdbcPostcardRepository implements PostcardRepository{
 
     @Override
     public Postcard getPostcardById(Long id) {
-        logger.info("SUCCESS: retrieving postcard with id: " + id);
+        logger.info("Retrieving postcard with id: {}", id);
 
         String query =
                 "SELECT * " +
@@ -90,7 +90,7 @@ public class JdbcPostcardRepository implements PostcardRepository{
 
     @Override
     public List<Postcard> findPostcardsByType(PostcardType type) {
-        logger.info("SUCCESS: retrieving postcards of type: " + type);
+        logger.info("Retrieving postcards of type: {}", type);
         String query =
                         "SELECT * " +
                         "FROM postcard " +

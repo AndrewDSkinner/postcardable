@@ -39,7 +39,7 @@ public class Controller {
 
     @PostMapping
     public ResponseEntity<PostcardResponseDto> createPostcard(@RequestBody PostcardRequestDto postcardRequestDto) {
-        logger.info("SUCCESS: Creating postcard: " + postcardRequestDto);
+        logger.info("POST /postcard {}", postcardRequestDto);
 
         PostcardResponseDto responseDto = null;
 
@@ -62,7 +62,7 @@ public class Controller {
 
     @GetMapping("/{id}")
     public ResponseEntity<PostcardResponseDto> getPostcard(@PathVariable Long id) {
-        logger.info("SUCCESS: retrieving postcard with id: " + id);
+        logger.info("GET /postcard/{}", id);
         PostcardResponseDto responseDto = Postcard.to(postcardService.getPostcardById(id));
 
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
@@ -70,7 +70,7 @@ public class Controller {
 
     @GetMapping()
     public  ResponseEntity<List<PostcardResponseDto>> getPostcardsByType(@RequestParam String type) {
-        logger.info("SUCCESS: retrieving postcards of type: " + type);
+        logger.info("GET /postcard/ type: {}",  type);
         String value = type.toUpperCase();
         List<PostcardResponseDto> responseDtos = Postcard.buildDtos(postcardService.findPostcardsByType(PostcardType.valueOf(value)));
 
