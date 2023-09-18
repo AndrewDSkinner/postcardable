@@ -11,19 +11,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-import static com.postcardable.postcardable.web.dto.request.PostcardType.CARDSIZE;
-import static com.postcardable.postcardable.web.dto.request.PostcardType.HALFSHEET;
 
 @RestController()
 @RequestMapping("/postcard")
@@ -41,21 +31,13 @@ public class Controller {
     public ResponseEntity<PostcardResponseDto> createPostcard(@RequestBody PostcardRequestDto postcardRequestDto) {
         logger.info("POST /postcard {}", postcardRequestDto);
 
-        PostcardResponseDto responseDto = null;
+        PostcardResponseDto responseDto;
 
         Finish finish = postcardRequestDto.getFinish();
         Double thickness = postcardRequestDto.getThickness();
         Corners corners = postcardRequestDto.getCorners();
 
-        if (!ObjectUtils.isEmpty(postcardRequestDto)) {
-
-            if (postcardRequestDto.getType() == HALFSHEET) {
-                responseDto = Postcard.to(postcardService.createPostcard(HALFSHEET, finish, thickness, corners));
-            }
-            if (postcardRequestDto.getType() == CARDSIZE) {
-                responseDto = Postcard.to(postcardService.createPostcard(CARDSIZE, finish, thickness, corners));
-            }
-        }
+        responseDto = Postcard.to(postcardService.createPostcard(postcardRequestDto.getType(), finish, thickness, corners));
 
         return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
     }
@@ -69,7 +51,7 @@ public class Controller {
     }
 
     @GetMapping()
-    public  ResponseEntity<List<PostcardResponseDto>> getPostcardsByType(@RequestParam String type) {
+    public  ResponseEntity<List<PostcardResponseDto>> findPostcardsByType(@RequestParam String type) {
         logger.info("GET /postcard/ type: {}",  type);
         String value = type.toUpperCase();
         List<PostcardResponseDto> responseDtos = Postcard.buildDtos(postcardService.findPostcardsByType(PostcardType.valueOf(value)));
