@@ -8,13 +8,15 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PostcardTest {
 
     @Test
     void givenPostcardIsNull_whenToMethodExecuted_PostcardIsReturned() {
-        PostcardResponseDto responseDto = Postcard.to(null);
-        assertNotNull(responseDto);
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> Postcard.to(null));
+        assertNotNull(exception);
+        assertEquals("Unknown postcard type", exception.getMessage());
     }
 
     @Test

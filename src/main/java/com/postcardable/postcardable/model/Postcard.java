@@ -1,6 +1,8 @@
 package com.postcardable.postcardable.model;
 
 import com.postcardable.postcardable.web.dto.request.PostcardType;
+import com.postcardable.postcardable.web.dto.response.CardSizeResponseDto;
+import com.postcardable.postcardable.web.dto.response.HalfsheetResponseDto;
 import com.postcardable.postcardable.web.dto.response.PostcardResponseDto;
 
 import java.util.List;
@@ -47,9 +49,17 @@ public abstract class Postcard {
         if(postcard != null) {
             String length = postcard.size.getLength().toString();
             String width = postcard.size.getWidth().toString();
-            return new PostcardResponseDto(postcard.id, length, width, postcard.finish.toString(), postcard.size.getThickness(), postcard.corners.toString());
+
+            switch (postcard.getType()) {
+                case HALFSHEET:
+                    return new HalfsheetResponseDto(postcard.id, length, width, postcard.finish.toString(), postcard.size.getThickness(), postcard.corners.toString());
+                case CARDSIZE:
+                    return new CardSizeResponseDto(postcard.id, length, width, postcard.finish.toString(), postcard.size.getThickness(), postcard.corners.toString());
+                default:
+                    throw new IllegalArgumentException("Unknown postcard type: " + postcard.getType());
+            }
         }
-        return new PostcardResponseDto();
+        throw new IllegalArgumentException("Unknown postcard type");
     }
 
     public static List<PostcardResponseDto> buildDtos(List<Postcard> postcards) {
