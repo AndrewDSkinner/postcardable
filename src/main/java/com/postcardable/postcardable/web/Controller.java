@@ -3,10 +3,11 @@ package com.postcardable.postcardable.web;
 import com.postcardable.postcardable.model.Corners;
 import com.postcardable.postcardable.model.Finish;
 import com.postcardable.postcardable.model.Postcard;
+import com.postcardable.postcardable.model.PostcardType;
 import com.postcardable.postcardable.service.PostcardService;
 import com.postcardable.postcardable.web.dto.request.PostcardRequestDto;
-import com.postcardable.postcardable.web.dto.request.PostcardType;
 import com.postcardable.postcardable.web.dto.response.PostcardResponseDto;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -28,7 +29,8 @@ public class Controller {
     }
 
     @PostMapping
-    public ResponseEntity<PostcardResponseDto> createPostcard(@RequestBody PostcardRequestDto postcardRequestDto) {
+    public ResponseEntity<PostcardResponseDto> createPostcard(@Valid @RequestBody PostcardRequestDto postcardRequestDto) {
+//        PostcardRequestDto.validateProperties(postcardRequestDto);
         logger.info("POST /postcard {}", postcardRequestDto);
 
         PostcardResponseDto responseDto;

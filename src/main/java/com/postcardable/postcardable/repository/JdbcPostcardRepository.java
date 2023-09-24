@@ -1,7 +1,7 @@
 package com.postcardable.postcardable.repository;
 
 import com.postcardable.postcardable.model.*;
-import com.postcardable.postcardable.web.dto.request.PostcardType;
+import com.postcardable.postcardable.model.PostcardType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -15,8 +15,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.postcardable.postcardable.web.dto.request.PostcardType.CARDSIZE;
-import static com.postcardable.postcardable.web.dto.request.PostcardType.HALFSHEET;
+import static com.postcardable.postcardable.model.PostcardType.CARDSIZE;
+import static com.postcardable.postcardable.model.PostcardType.HALFSHEET;
 
 @Repository
 public class JdbcPostcardRepository implements PostcardRepository{

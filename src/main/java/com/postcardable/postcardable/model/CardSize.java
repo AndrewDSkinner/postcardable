@@ -1,8 +1,6 @@
 package com.postcardable.postcardable.model;
 
-import com.postcardable.postcardable.web.dto.request.PostcardType;
-
-import static com.postcardable.postcardable.web.dto.request.PostcardType.CARDSIZE;
+import static com.postcardable.postcardable.model.PostcardType.CARDSIZE;
 
 public class CardSize extends Postcard {
 

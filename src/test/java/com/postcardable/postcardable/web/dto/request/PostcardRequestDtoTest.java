@@ -9,7 +9,7 @@ import static com.postcardable.postcardable.model.Corners.SQUARE;
 import static com.postcardable.postcardable.model.Finish.BAMBOO;
 import static com.postcardable.postcardable.model.Finish.LINEN;
 import static com.postcardable.postcardable.model.Finish.RECYCLED;
-import static com.postcardable.postcardable.web.dto.request.PostcardType.CARDSIZE;
+import static com.postcardable.postcardable.model.PostcardType.CARDSIZE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 

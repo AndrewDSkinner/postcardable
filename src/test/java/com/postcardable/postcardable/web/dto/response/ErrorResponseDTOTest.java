@@ -9,9 +9,9 @@ class ErrorResponseDTOTest {
 
     @Test
     void happyPath() {
-        ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(HttpStatus.BAD_REQUEST, "Invalid Parameters");
+        ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(String.valueOf(HttpStatus.BAD_REQUEST.value()), "Invalid Parameters");
 
-        assertEquals(HttpStatus.BAD_REQUEST, errorResponseDTO.getHttpStatus());
+        assertEquals(String.valueOf(HttpStatus.BAD_REQUEST.value()), errorResponseDTO.getHttpStatus());
         assertEquals("Invalid Parameters", errorResponseDTO.getMessage());
     }
 

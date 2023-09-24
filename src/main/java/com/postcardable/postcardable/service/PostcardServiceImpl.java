@@ -4,7 +4,7 @@ import com.postcardable.postcardable.model.Corners;
 import com.postcardable.postcardable.model.Finish;
 import com.postcardable.postcardable.model.Postcard;
 import com.postcardable.postcardable.repository.PostcardRepository;
-import com.postcardable.postcardable.web.dto.request.PostcardType;
+import com.postcardable.postcardable.model.PostcardType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

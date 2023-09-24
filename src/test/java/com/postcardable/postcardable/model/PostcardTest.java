@@ -1,6 +1,5 @@
 package com.postcardable.postcardable.model;
 
-import com.postcardable.postcardable.web.dto.request.PostcardType;
 import com.postcardable.postcardable.web.dto.response.PostcardResponseDto;
 import org.junit.jupiter.api.Test;
 

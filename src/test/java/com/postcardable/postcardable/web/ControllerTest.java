@@ -6,7 +6,7 @@ import com.postcardable.postcardable.model.HalfSheet;
 import com.postcardable.postcardable.service.PostcardService;
 import com.postcardable.postcardable.web.dto.request.HalfsheetRequestDto;
 import com.postcardable.postcardable.web.dto.request.PostcardRequestDto;
-import com.postcardable.postcardable.web.dto.request.PostcardType;
+import com.postcardable.postcardable.model.PostcardType;
 import com.postcardable.postcardable.web.dto.response.PostcardResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
