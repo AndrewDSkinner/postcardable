@@ -30,7 +30,7 @@ public class Controller {
 
     @PostMapping
     public ResponseEntity<PostcardResponseDto> createPostcard(@Valid @RequestBody PostcardRequestDto postcardRequestDto) {
-//        PostcardRequestDto.validateProperties(postcardRequestDto);
+
         logger.info("POST /postcard {}", postcardRequestDto);
 
         PostcardResponseDto responseDto;
