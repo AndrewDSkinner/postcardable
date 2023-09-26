@@ -5,13 +5,13 @@ import com.postcardable.postcardable.model.Finish;
 import com.postcardable.postcardable.model.HalfSheet;
 import com.postcardable.postcardable.model.Postcard;
 import com.postcardable.postcardable.repository.PostcardRepository;
-import com.postcardable.postcardable.web.dto.request.PostcardType;
+import com.postcardable.postcardable.model.PostcardType;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static com.postcardable.postcardable.model.Corners.ROUNDED;
-import static com.postcardable.postcardable.web.dto.request.PostcardType.HALFSHEET;
+import static com.postcardable.postcardable.model.PostcardType.HALFSHEET;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;

@@ -2,8 +2,9 @@ package com.postcardable.postcardable.web.dto.request;
 
 import com.postcardable.postcardable.model.Corners;
 import com.postcardable.postcardable.model.Finish;
+import com.postcardable.postcardable.model.PostcardType;
 
-import static com.postcardable.postcardable.web.dto.request.PostcardType.CARDSIZE;
+import static com.postcardable.postcardable.model.PostcardType.CARDSIZE;
 
 public class CardSizeRequestDto extends PostcardRequestDto{
 

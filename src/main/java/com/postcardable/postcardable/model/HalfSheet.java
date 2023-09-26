@@ -1,8 +1,6 @@
 package com.postcardable.postcardable.model;
 
-import com.postcardable.postcardable.web.dto.request.PostcardType;
-
-import static com.postcardable.postcardable.web.dto.request.PostcardType.HALFSHEET;
+import static com.postcardable.postcardable.model.PostcardType.HALFSHEET;
 
 public class HalfSheet extends Postcard{
 

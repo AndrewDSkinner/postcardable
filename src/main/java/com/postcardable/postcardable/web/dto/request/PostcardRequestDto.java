@@ -2,17 +2,24 @@ package com.postcardable.postcardable.web.dto.request;
 
 import com.postcardable.postcardable.model.Corners;
 import com.postcardable.postcardable.model.Finish;
+import com.postcardable.postcardable.model.PostcardType;
 import jakarta.validation.ValidationException;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Objects;
 
 public abstract class PostcardRequestDto {
+    @NotNull(message = "Finish cannot be null")
     private final Finish finish;
+
+    @NotNull(message = "Thickness cannot be null")
     private final Double thickness;
+
+    @NotNull(message = "Corners cannot be null")
     private final Corners corners;
 
     public PostcardRequestDto(Finish finish, Double thickness, Corners corners) {
-        validateProperties(finish, thickness, corners);
+       validateThickness(thickness);
         this.finish = finish;
         this.thickness = thickness;
         this.corners = corners;
@@ -32,9 +39,10 @@ public abstract class PostcardRequestDto {
 
     public abstract PostcardType getType();
 
-    private void validateProperties(Finish finish, Double thickness, Corners corners) {
-        if (finish == null || thickness == null || corners == null) {
-            throw new ValidationException("Finish, thickness, corners, and type properties are required");
+    private void validateThickness(Double thickness) {
+
+        if (thickness == null || thickness < .007 || thickness > .016) {
+            throw new ValidationException("Thickness must be at least .007 inches and no more than .016 inches.");
         }
     }
 

@@ -1,4 +1,4 @@
-package com.postcardable.postcardable.web.dto.request;
+package com.postcardable.postcardable.model;
 
 public enum PostcardType {
     HALFSHEET,

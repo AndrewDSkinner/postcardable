@@ -1,6 +1,6 @@
 package com.postcardable.postcardable.web.dto.response;
 
-import com.postcardable.postcardable.web.dto.request.PostcardType;
+import com.postcardable.postcardable.model.PostcardType;
 
 public class CardSizeResponseDto extends PostcardResponseDto{
 
