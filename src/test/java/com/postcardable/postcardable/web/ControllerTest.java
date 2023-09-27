@@ -31,9 +31,9 @@ class ControllerTest {
 
     @Test
     void createHalfSheetHappyPath() {
-        HalfSheet halfSheet = new HalfSheet(1L,Finish.BAMBOO, 0.34, Corners.ROUNDED);
-        PostcardRequestDto postcardDto = new HalfsheetRequestDto(Finish.BAMBOO, 0.34, Corners.ROUNDED);
-        when(postcardService.createPostcard(PostcardType.HALFSHEET, Finish.BAMBOO, 0.34, Corners.ROUNDED)).thenReturn(halfSheet);
+        HalfSheet halfSheet = new HalfSheet(1L,Finish.BAMBOO, 0.009, Corners.ROUNDED);
+        PostcardRequestDto postcardDto = new HalfsheetRequestDto(Finish.BAMBOO, 0.009, Corners.ROUNDED);
+        when(postcardService.createPostcard(PostcardType.HALFSHEET, Finish.BAMBOO, 0.009, Corners.ROUNDED)).thenReturn(halfSheet);
         PostcardResponseDto responseDto = controller.createPostcard(postcardDto).getBody();
         assertNotNull(responseDto);
         assertEquals(responseDto.getFinish(), halfSheet.getFinish().toString());
