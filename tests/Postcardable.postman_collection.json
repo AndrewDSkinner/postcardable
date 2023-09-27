@@ -79,6 +79,53 @@
 			"response": []
 		},
 		{
+			"name": "Create Halfsheet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function() {\r",
+							"    pm.response.to.have.status(201);\r",
+							"} )"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type\": \"halfsheet\",\r\n    \"finish\": \"LINEN\",\r\n    \"thickness\": 0.009,\r\n    \"corners\": \"SQUARE\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/postcard",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"postcard"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Create Postcard Null Thickness",
 			"event": [
 				{
@@ -105,6 +152,100 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"type\": \"cardsize\",\r\n    \"finish\": \"BAMBOO\",\r\n    \"thickness\": null,\r\n    \"corners\": \"ROUNDED\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/postcard",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"postcard"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Postcard Null finish",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function() {\r",
+							"    pm.response.to.have.status(400);\r",
+							"} )"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type\": \"cardsize\",\r\n    \"finish\": null,\r\n    \"thickness\": 0.016,\r\n    \"corners\": \"ROUNDED\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/postcard",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"postcard"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Postcard Null corners",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function() {\r",
+							"    pm.response.to.have.status(400);\r",
+							"} )"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type\": \"cardsize\",\r\n    \"finish\": \"LINEN\",\r\n    \"thickness\": 0.016,\r\n    \"corners\": null\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -199,53 +340,6 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"type\": \"cardsize\",\r\n    \"finish\": \"BAMBOO\",\r\n    \"thickness\": 0.017,\r\n    \"corners\": \"ROUNDED\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/postcard",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"postcard"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Halfsheet",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 201\", function() {\r",
-							"    pm.response.to.have.status(201);\r",
-							"} )"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"type\": \"halfsheet\",\r\n    \"finish\": \"LINEN\",\r\n    \"thickness\": 0.009,\r\n    \"corners\": \"SQUARE\"\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
